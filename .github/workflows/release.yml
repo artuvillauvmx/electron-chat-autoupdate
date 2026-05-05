@@ -14,18 +14,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and publish to GitHub Releases
-        run: npm run release
+      - name: Build app
+        run: npm run dist
+
+      - name: Create GitHub Release with generated notes
+        run: gh release create ${{ github.ref_name }} dist/* --title "${{ github.ref_name }}" --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
