@@ -1,6 +1,6 @@
 {
   "name": "electron-chat-autoupdate",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Chat de escritorio sencillo con auto-update desde GitHub Releases publicas.",
   "main": "src/main.js",
   "author": "Clase de Despliegue de Software",
