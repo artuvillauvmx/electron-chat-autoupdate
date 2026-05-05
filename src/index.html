@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron Chat AutoUpdate</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body data-theme="light">
+    <main class="shell">
+      <section class="topbar">
+        <div class="topbar-summary">
+          <div class="brand">
+            <div class="brand-mark">CR</div>
+            <div>
+              <p class="eyebrow">Red local</p>
+              <h1>Chat Local</h1>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <span class="version">v<span id="appVersion">...</span></span>
+            <span class="update-pill"><span class="status-dot" aria-hidden="true"></span><span id="updateStatus">Listo</span></span>
+            <button id="settingsToggleButton" class="ghost-button" type="button" aria-expanded="false">Opciones</button>
+          </div>
+        </div>
+
+        <div id="settingsPanel" class="settings-panel" hidden>
+          <div class="theme-card">
+            <p class="label">Tema</p>
+            <div class="theme-toggle" role="group" aria-label="Seleccionar tema">
+              <button id="lightThemeButton" class="theme-option active" type="button">Brilloso</button>
+              <button id="darkThemeButton" class="theme-option" type="button">Obscuro</button>
+            </div>
+          </div>
+
+          <div class="status-card">
+            <p class="label">Actualizaciones</p>
+            <button id="checkUpdatesButton" type="button">Buscar actualizaciones</button>
+          </div>
+
+          <div class="status-card">
+            <p class="label">Conexion</p>
+            <div class="connection-form">
+              <input id="displayNameInput" type="text" autocomplete="name" placeholder="Tu nombre">
+              <input id="serverInput" type="text" autocomplete="off" value="ws://localhost:8787" placeholder="Servidor local">
+              <input id="roomInput" type="text" autocomplete="off" value="sala-local" placeholder="Sala">
+              <button id="connectButton" type="button">Conectar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <p class="label">Sala local</p>
+            <h2>Mensajes</h2>
+          </div>
+          <span class="presence"><span id="activeCount">0</span> conectados</span>
+        </header>
+
+        <div class="workspace">
+          <aside class="contacts-panel" aria-label="Contactos activos en red local">
+            <div class="contacts-heading">
+              <div>
+                <p class="label">Red local</p>
+                <h3>Contactos</h3>
+              </div>
+              <span id="networkStatus" class="network-status">Sin conexion</span>
+            </div>
+            <div id="contactsList" class="contacts-list"></div>
+          </aside>
+
+          <div id="messages" class="messages" aria-live="polite"></div>
+        </div>
+
+        <form id="chatForm" class="composer">
+          <input id="messageInput" type="text" autocomplete="off" placeholder="Escribe un mensaje..." required>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

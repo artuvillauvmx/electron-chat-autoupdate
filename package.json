@@ -1,0 +1,55 @@
+{
+  "name": "electron-chat-autoupdate",
+  "version": "1.0.0",
+  "description": "Chat de escritorio sencillo con auto-update desde GitHub Releases publicas.",
+  "main": "src/main.js",
+  "author": "Clase de Despliegue de Software",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "signal": "node server/lan-signaling-server.js",
+    "dist": "electron-builder --win nsis --publish never",
+    "release": "electron-builder --win nsis --publish always"
+  },
+  "dependencies": {
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.8.3",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "electron": "^41.5.0",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "mx.edu.despliegue.electronchat",
+    "productName": "Electron Chat AutoUpdate",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-${version}-Setup.${ext}",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "artuvillauvmx",
+        "repo": "electron-chat-autoupdate",
+        "private": false,
+        "releaseType": "release"
+      }
+    ]
+  }
+}
