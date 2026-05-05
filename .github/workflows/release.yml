@@ -29,6 +29,14 @@ jobs:
         run: npm run dist
 
       - name: Create GitHub Release with generated notes
-        run: gh release create ${{ github.ref_name }} dist/* --title "${{ github.ref_name }}" --generate-notes
+        shell: pwsh
+        run: |
+          $assets = @(
+            Get-ChildItem -Path dist -File -Filter "*.exe"
+            Get-ChildItem -Path dist -File -Filter "*.blockmap"
+            Get-ChildItem -Path dist -File -Filter "latest.yml"
+          )
+
+          gh release create "${{ github.ref_name }}" @($assets.FullName) --title "${{ github.ref_name }}" --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
