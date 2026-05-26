@@ -291,3 +291,5 @@ Ese token existe durante el workflow y permite publicar la release. No queda den
 7. La app debe detectar la nueva version.
 
 Para que auto-update funcione correctamente, el usuario debe ejecutar una version instalada desde un release anterior.
+
+Nota de laboratorio Jenkins: validacion de SCM polling 2026-05-26 00:27:11 -06:00
