@@ -4,6 +4,8 @@ Proyecto de practica para publicar una aplicacion Electron en GitHub Releases y 
 
 Este repositorio tambien se utiliza en la practica de Jenkins para automatizar construccion, despliegue local del backend y publicacion del cliente.
 
+La integracion con Jenkins permite comprobar tanto la ejecucion del backend local como la publicacion automatizada del cliente Electron.
+
 ## Objetivo
 
 El alumno debe entender este flujo:
